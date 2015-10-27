@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
+  respond_to :json, :html
+
   def index
     @posts = Post.all
     
-    respond_to do |format|
-      format.html
-      format.json{render json: @posts}
-    end
+    respond_with @posts
+    
   end
 end
