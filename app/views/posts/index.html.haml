@@ -1,15 +1,21 @@
+
+
 %div{"ng-controller"=>"PostsCtrl"}
   %h1
     {{heading}}
+  %form{"ng-submit"=>"create()", "name"=>"hello"}
+    %label{"for"=>"title"}
+      Title
+    %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"newPost.title"}
+    %p
+      {{newPost.title}}
+    %textarea{"name"=>"content", "id"=>"content", "ng-model"=>"newPost.content"}
+    %p
+      {{newPost.description}}
+    %input{"type"=>"submit"}  
   %li{"ng-repeat"=>"post in posts"}
     %h2
       {{post.title}}
     %p
       {{post.content}}
 
-
-/ - @posts.each do |post|
-/   %h1
-/     = post.title
-/   %p
-/     = post.content
