@@ -9,6 +9,10 @@ class PostsController < ApplicationController
     respond_with Post.create(post_params)
   end
 
+  def destroy
+    respond_with Post.find(params[:id]).destroy
+  end
+
   def post_params
     params.require(:post).permit(:id, :title, :content)
   end

@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-blogApp = angular.module("blogApp", ["ngResource"])
+blogApp = angular.module("blogApp", ["ngResource", "ngTouch"])
 
 blogApp.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
@@ -19,6 +19,8 @@ blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
       $scope.newPost = {}
       ),(response) ->
         console.log "Error: " + response.status
+  $scope.destroy = ->
+    console.log("I clicked the link!")
 ]
 
 blogApp.factory "Post", ["$resource", ($resource) ->
