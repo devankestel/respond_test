@@ -19,8 +19,8 @@ blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
       $scope.newPost = {}
       ),(response) ->
         console.log "Error: " + response.status
-  $scope.destroy = ->
-    console.log("I clicked the link!")
+  $scope.destroy = (stuff)->
+    console.log(stuff)
 ]
 
 blogApp.factory "Post", ["$resource", ($resource) ->
