@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    respond_with Post.all
+    respond_with Post.destroy(params[:id])
   end
 
   def post_params
