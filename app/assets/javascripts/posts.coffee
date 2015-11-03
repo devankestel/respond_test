@@ -23,6 +23,7 @@ blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
     console.log(post.id)
     Post.delete {postId: post.id}, ((resource) ->
       console.log("got in")
+      $scope.posts = Post.query()
       ), (response) ->
         console.log "Error: " + response.status
 ]
