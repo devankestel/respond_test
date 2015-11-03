@@ -19,11 +19,15 @@ blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
       $scope.newPost = {}
       ),(response) ->
         console.log "Error: " + response.status
-  $scope.destroy = (stuff)->
-    console.log(stuff)
+  $scope.destroy = (post)->
+    console.log(post.id)
+    Post.delete {postId: post.id}, ((resource) ->
+      console.log("got in")
+      ), (response) ->
+        console.log "Error: " + response.status
 ]
 
 blogApp.factory "Post", ["$resource", ($resource) ->
-  $resource "/posts.json"
+  $resource "/posts/:postId.json", {postId: "@id"}
 ]
 
