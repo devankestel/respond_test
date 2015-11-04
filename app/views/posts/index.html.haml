@@ -14,11 +14,12 @@
       {{newPost.description}}
     %input{"type"=>"submit"}  
   %li{"ng-repeat"=>"post in posts"}
-    %h2
+    %h2{"ng-click"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
       {{post.title}}
+    %h2  
       =link_to "X", "#", "ng-click"=>"destroy(post)"
     %form
-      %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title"}
+      %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
     %p
       {{post.content}}
 
