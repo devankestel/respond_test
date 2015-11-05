@@ -20,6 +20,8 @@
       %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
     %h2  
       =link_to "X", "#", "ng-click"=>"destroy(post)"
-    %p
+    %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
       {{post.content}}
+    %form{"ng-submit"=>"update(post)"}
+      %input{"type"=>"text", "name"=>"content", "id"=>"content", "ng-model"=>"post.content", "ng-show"=>"contentForm", "ng-init"=>"contentForm = false"}
 
