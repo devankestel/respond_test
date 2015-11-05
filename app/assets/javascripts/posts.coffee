@@ -26,9 +26,18 @@ blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
       $scope.posts = Post.query()
       ), (response) ->
         console.log "Error: " + response.status
+  $scope.update = (post) ->
+    console.log post.id
+    Post.update {postId: post.id}, post, ((resource) ->
+      console.log resource
+      $scope.posts = Post.query()
+      ), (response) ->
+      console.log "Error: " + response.status
 ]
 
 blogApp.factory "Post", ["$resource", ($resource) ->
-  $resource "/posts/:postId.json", {postId: "@id"}
+  $resource "/posts/:postId.json", postId: "@id", 
+    update: 
+      method: "PATCH"
 ]
 
