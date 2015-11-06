@@ -15,4 +15,5 @@
 //= require angular
 //= require angular-resource
 //= require angular-touch
+//= require angular-route
 //= require_tree .

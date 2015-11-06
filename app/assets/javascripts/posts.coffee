@@ -2,15 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-blogApp = angular.module("blogApp", ["ngResource", "ngTouch"])
+blogApp = angular.module("blogApp", ["ngResource", "ngTouch", "ngRoute"])
 
 blogApp.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-blogApp.controller "PostsCtrl", ["$scope", "Post", ($scope, Post) ->
+blogApp.config(["$routeProvider", ($routeProvider) ->
+  $routeProvider
+    .when("/posts/:id",
+      controller: "PostsCtrl",
+      templateUrl: "show.html"
+    )
+])
+
+blogApp.controller "PostsCtrl", ["$scope", "$routeParams", "$route", "Post", ($scope, $routeParams, $route, Post) ->
   $scope.heading = "Mah Very Important Posts"
   $scope.posts = Post.query()
+  pathArray = window.location.pathname.split("/")
+  $scope.postId = pathArray[pathArray.length - 1]
+  $scope.currentPost = Post.get(postId: $scope.postId)
   $scope.create = ->
     console.log($scope.newPost)
     Post.save $scope.newPost, ((resource) ->
@@ -40,4 +51,5 @@ blogApp.factory "Post", ["$resource", ($resource) ->
     update: 
       method: "PATCH"
 ]
+
 
