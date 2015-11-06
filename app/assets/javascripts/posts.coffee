@@ -21,7 +21,7 @@ blogApp.controller "PostsCtrl", ["$scope", "$routeParams", "$route", "Post", ($s
   $scope.posts = Post.query()
   pathArray = window.location.pathname.split("/")
   $scope.postId = pathArray[pathArray.length - 1]
-  $scope.currentPost = Post.get(postId: $scope.postId)
+  $scope.currentPost = Post.get(postId: $scope.postId) if $scope.postId != ""
   $scope.create = ->
     console.log($scope.newPost)
     Post.save $scope.newPost, ((resource) ->
