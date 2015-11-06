@@ -15,7 +15,7 @@
     %input{"type"=>"submit"}  
   %li{"ng-repeat"=>"post in posts"}
     %h2{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
-      {{post.title}}
+      =link_to "{{post.title}}", "/posts/{{post.id}}"
     %form{"ng-submit"=>"update(post)"}
       %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
     %h2  
