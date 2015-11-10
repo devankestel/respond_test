@@ -1,27 +1,35 @@
 
 
-%div{"ng-controller"=>"PostsCtrl"}
+%div.container{"ng-controller"=>"PostsCtrl"}
   %h1
     {{heading}}
+  %p
+    =link_to "Logout", logout_path
   %form{"ng-submit"=>"create()", "name"=>"hello"}
-    %label{"for"=>"title"}
-      Title
-    %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"newPost.title"}
+    %div.input-group
+      %label{"for"=>"title"}
+        Title
+      %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"newPost.title"}
     %p
       {{newPost.title}}
-    %textarea{"name"=>"content", "id"=>"content", "ng-model"=>"newPost.content"}
+    %textarea.form-control{"name"=>"content", "id"=>"content", "ng-model"=>"newPost.content"}
     %p
-      {{newPost.description}}
+      {{newPost.content}}
     %input{"type"=>"submit"}  
-  %li{"ng-repeat"=>"post in posts"}
-    %h2{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
-      =link_to "{{post.title}}", "/posts/{{post.id}}"
-    %form{"ng-submit"=>"update(post)"}
-      %input{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
-    %h2  
-      =link_to "X", "#", "ng-click"=>"destroy(post)"
-    %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
-      {{post.content}}
-    %form{"ng-submit"=>"update(post)"}
-      %input{"type"=>"text", "name"=>"content", "id"=>"content", "ng-model"=>"post.content", "ng-show"=>"contentForm", "ng-init"=>"contentForm = false"}
+  %li.list-unstyled{"ng-repeat"=>"post in posts"}
+    %div.panel.panel-primary
+      %div.panel-heading
+        %h2.panel-title{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
+          =link_to "{{post.title}}", "/posts/{{post.id}}"  
+          =link_to "X", "#", "ng-click"=>"destroy(post)"
+        %form{"ng-submit"=>"update(post)"}
+          %div.input-group
+            %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
+        
+      %div.panel-body
+        %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
+          {{post.content}}
+        %form{"ng-submit"=>"update(post)"}
+          %div.input-group
+            %input.form-control{"type"=>"text", "name"=>"content", "id"=>"content", "ng-model"=>"post.content", "ng-show"=>"contentForm", "ng-init"=>"contentForm = false"}
 
