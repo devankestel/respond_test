@@ -46,6 +46,6 @@ class PostsController < ApplicationController
     end
   end
   def sample_posts
-    [{"title": "Here Comes Honey Boo Boo", "content": "I got my go-go juice."},{"title": "Another hum-drum post.", "content": "Oh here we go again."}]
+    [{"title": "Double click the blue header to edit a title.", "content": "Double click the content to edit."},{"title": "Use the form to add a memo.", "content": "Or click 'logout' to start fresh."}, {"title": "Click the title text", "content": "To display the memo on its own page."} ]
   end
 end

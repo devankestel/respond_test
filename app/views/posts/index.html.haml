@@ -1,35 +1,46 @@
 
 
 %div.container{"ng-controller"=>"PostsCtrl"}
-  %h1
-    {{heading}}
-  %p
-    =link_to "Logout", logout_path
+  %nav  
+    %p.text-right
+      =link_to "Logout", logout_path 
+    %h1
+      {{heading}}
+    %h2
+      {{subheading}}    
   %form{"ng-submit"=>"create()", "name"=>"hello"}
-    %div.input-group
-      %label{"for"=>"title"}
-        Title
-      %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"newPost.title"}
-    %p
-      {{newPost.title}}
-    %textarea.form-control{"name"=>"content", "id"=>"content", "ng-model"=>"newPost.content"}
-    %p
-      {{newPost.content}}
-    %input{"type"=>"submit"}  
-  %li.list-unstyled{"ng-repeat"=>"post in posts"}
-    %div.panel.panel-primary
-      %div.panel-heading
-        %h2.panel-title{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
-          =link_to "{{post.title}}", "/posts/{{post.id}}"  
-          =link_to "X", "#", "ng-click"=>"destroy(post)"
-        %form{"ng-submit"=>"update(post)"}
-          %div.input-group
-            %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
-        
-      %div.panel-body
-        %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
-          {{post.content}}
-        %form{"ng-submit"=>"update(post)"}
-          %div.input-group
-            %input.form-control{"type"=>"text", "name"=>"content", "id"=>"content", "ng-model"=>"post.content", "ng-show"=>"contentForm", "ng-init"=>"contentForm = false"}
+    %div.input-group.col-md-12
+      %div.col-md-8.col-md-offset-2 
+        %label{"for"=>"title"}
+          Title
+      
+        %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"newPost.title"}
+        %p
+          {{newPost.title}}
+      %div.col-md-8.col-md-offset-2
+        %label{"for"=>"content"}
+          Memo
+        %textarea.form-control{"name"=>"content", "id"=>"content", "ng-model"=>"newPost.content"}
+        %p
+          {{newPost.content}}
+      %div.col-md-4.col-md-offset-4
+        %input.form-control.btn.btn-info{"type"=>"submit"}    
+  %ul
+    %li.list-unstyled.col-md-4{"ng-repeat"=>"post in posts"}
+      %div.panel.panel-primary
+        %div.panel-heading
+          %h2.panel-title.text-center{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
+            =link_to "{{post.title}}", "/posts/{{post.id}}"
+            %div.panel-title.text-right 
+              =link_to "X", "#", "ng-click"=>"destroy(post)"
+          %form{"ng-submit"=>"update(post)"}
+            %div.input-group.col-md-12
+              %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
+            
+        %div.panel-body
+          %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
+            {{post.content}}
+          %form{"ng-submit"=>"update(post)"}
+            %div.input-group.col-md-12
+              %input.form-control{"type"=>"text", "name"=>"content", "id"=>"content", "ng-model"=>"post.content", "ng-show"=>"contentForm", "ng-init"=>"contentForm = false"}
 

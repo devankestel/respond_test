@@ -17,7 +17,8 @@ blogApp.config(["$routeProvider", ($routeProvider) ->
 ])
 
 blogApp.controller "PostsCtrl", ["$scope", "$routeParams", "$route", "Post", ($scope, $routeParams, $route, Post) ->
-  $scope.heading = "Mah Very Important Posts"
+  $scope.heading = "Rangular Memo Board:"
+  $scope.subheading = "Brought to you by Rails 4 and AngularJS 1.4.7"
   $scope.posts = Post.query()
   pathArray = window.location.pathname.split("/")
   $scope.postId = pathArray[pathArray.length - 1]
