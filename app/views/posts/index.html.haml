@@ -30,13 +30,15 @@
       %div.panel.panel-primary
         %div.panel-heading
           %h2.panel-title.text-center{"ng-dblclick"=>"titleForm = !titleForm", "ng-show"=>"!titleForm"}
-            =link_to "{{post.title}}", "/posts/{{post.id}}"
-            %div.panel-title.text-right 
+            %span.panel-title.pull-right<
               =link_to "X", "#", "ng-click"=>"destroy(post)"
+            %span.panel-title<
+              =link_to "{{post.title}}", "/posts/{{post.id}}"
+                                        
           %form{"ng-submit"=>"update(post)"}
             %div.input-group.col-md-12
               %input.form-control{"type"=>"text", "name"=>"title", "id"=>"title", "ng-model"=>"post.title", "ng-show"=>"titleForm", "ng-init"=>"titleForm = false"}
-            
+              
         %div.panel-body
           %p{"ng-dblclick"=>"contentForm = !contentForm", "ng-show"=>"!contentForm"}
             {{post.content}}
