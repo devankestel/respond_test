@@ -2,12 +2,14 @@
 
 %div.container{"ng-controller"=>"PostsCtrl"}
   %nav  
-    %p.text-right
+    %p.text-right{"ng-show"=>"loggedIn", "ng-init"=>"loggedIn = false", "ng-click" =>"!loggedIn"}
       =link_to "Logout", logout_path 
     %h1
       {{heading}}
     %h2
-      {{subheading}}    
+      {{subheading}}
+    %h3
+      {{subsubheading}}    
   %form{"ng-submit"=>"create()", "name"=>"hello"}
     %div.input-group.col-md-12
       %div.col-md-8.col-md-offset-2 
@@ -22,7 +24,7 @@
         
         %div.col-md-12.spacer
       %div.col-md-4.col-md-offset-4
-        %input.form-control.btn.btn-info{"type"=>"submit"}
+        %input.form-control.btn.btn-info{"type"=>"submit", "ng-click"=>"loggedIn=true"}
   %div.col-md-12.spacer
   %div.col-md-12.spacer
   %h2
@@ -45,7 +47,7 @@
             %span.panel-title.pull-right<
               =link_to "X", "#", "ng-click"=>"destroy(post)"
             %span.panel-title<
-              =link_to "{{post.title}}", "/posts/{{post.id}}"
+              {{post.title}}
                                         
           %form{"ng-submit"=>"update(post)"}
             %div.input-group.col-md-12

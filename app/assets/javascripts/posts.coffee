@@ -19,6 +19,7 @@ blogApp.config(["$routeProvider", ($routeProvider) ->
 blogApp.controller "PostsCtrl", ["$scope", "$routeParams", "$route", "Post", ($scope, $routeParams, $route, Post) ->
   $scope.heading = "Rangular Memo Board:"
   $scope.subheading = "Brought to you by Rails 4 and AngularJS 1.4.7"
+  $scope.subsubheading = "With help from Bootstrap, CoffeeScript, and HAML."
   $scope.posts = Post.query()
   pathArray = window.location.pathname.split("/")
   $scope.postId = pathArray[pathArray.length - 1]
@@ -34,15 +35,23 @@ blogApp.controller "PostsCtrl", ["$scope", "$routeParams", "$route", "Post", ($s
   $scope.destroy = (post)->
     console.log(post.id)
     Post.delete {postId: post.id}, ((resource) ->
-      console.log("got in")
-      $scope.posts = Post.query()
+      console.log(resource)
+      index = $scope.posts.map((e) ->
+        e.id
+      ).indexOf(resource.id)
+      console.log(index) 
+      $scope.posts.splice(index, 1)
       ), (response) ->
         console.log "Error: " + response.status
   $scope.update = (post) ->
     console.log post.id
     Post.update {postId: post.id}, post, ((resource) ->
       console.log resource
-      $scope.posts = Post.query()
+      index = $scope.posts.map((e) ->
+        e.id
+      ).indexOf(resource.id)
+      console.log(index)      
+      $scope.posts[index] = resource
       ), (response) ->
       console.log "Error: " + response.status
 ]
