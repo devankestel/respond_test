@@ -58,6 +58,6 @@ class PostsController < ApplicationController
     end
   end
   def sample_posts
-    [{"title": "Dbl-click the blue header to edit a title.", "content": "Double click the content to edit.", "sample": "true"},{"title": "Use the form to add a memo.", "content": "Or click 'logout' or hit 'refresh' to start fresh.", "sample": "true"}]
+    [{title: "Dbl-click the blue header to edit a title.", content: "Double click the content to edit.", sample: "true"}, {title: "Use the form to add a memo.", content: "Or click 'logout' or hit 'refresh' to start fresh.", sample: "true"}]
   end
 end
