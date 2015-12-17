@@ -32,6 +32,12 @@ gem 'haml'
 
 gem 'angular_rails_csrf'
 
+#Better server than webrick for production
+gem 'puma'
+
+#Works with Heroku Procfile
+gem 'foreman'
+
 group :production do
   #postgres database for Heroku
   gem 'pg'
